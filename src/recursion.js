@@ -7,33 +7,97 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+  var result = n;
+  if (n < 0) {
+    return null;
+  }
+  
+  if (n === 1 || n === 0) {
+    return 1;
+  }
+
+  if (n < 2) {
+    return result;
+  
+  } else {
+    return result * factorial(n-1);
+  }
+
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+  var result = array[0];
+
+  if (array.length === 0) {
+    return 0;
+  }
+
+  if (array.length === 1) {
+    return result;
+
+  } else {
+    return result + sum(array.slice(1)); 
+  }
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  var result = 0;
+
+  for (var i = 0; i < array.length; i++) {
+    if (!Array.isArray(array[i])) {
+      result += array[i];
+    } else {
+      result += arraySum(array[i]);
+    }
+  }
+  return result;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n < -1) {
+    return isEven(n * -1);
+  }
+
+  if (n - 2 === 0 || n === 0) {
+    return true
+  
+  } else if (n - 2 < 0) {
+    return false;
+  
+  } else {
+    return isEven(n-2);
+  }
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
-};
+  var result = 0;
+  
+  if (n === 0) {
+    return result;
+  
+  } else if (n > 0) {
+    return (n-1) + sumBelow(n-1);
+  
+  } else if (n < 0) {
+    return (n+1) + sumBelow(n+1);
+  }
 
+};
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
 };
-
+console.log([1].concat(2));
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
